@@ -1,0 +1,22 @@
+<div class="d-flex" id="wrapper">
+  <div class=" border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading d-flex">
+      LA CELDA
+      <img class="ml-3"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAABwklEQVRIS8WWizFEQRBFz0aACMgAESACRIAIEAEiQASIABEgAmRABIiAOqpna81+Zt7jeVM1tZ+Z7tufO909oKc16AmXGuB5YBNYqjTyBbgF3mfdLwELegesVIKma0/AxizwEvABcNoQNF3fAy6nyZaAj4GjEC7dTRif8eUEUH7iKin7N+CcSOuA2zXV+syldO8ecLvGCDfqcVsi1VLgB+FGgX9DpFrwIeFGgdvksxZwjHB/BbwL7IQVvt8zYBl4BoxkZ8B5tCTVGvAQ5OwMWI/dLl+BHlvtJFSnHpdyXe1xSVHb82E1m0autopLclXAr1Hkzd1iEMWc+XsOuAoU2fwRd82rpMplk0FVwNvADbAFXAML0eYkjgRKrVJjZLEksvq9AblsI2ABDoOh+6FMAI0QdDW0PQZ7BdMgz3PZRsClfLU5rwq1j9/C4DZv5xFSvTHn1l3XReTUUOux0cllG3ls6TO0KnP8SS9AQ0bbZWp/qR36ZnPZRsAqTB6nauR/euzglyqV4439NnnsZy7bCLhNDksyE3PcWz/2DRoi21kXyxZpyr7n7XzYE9yCUTu81xooByxGwyG/NGXWKm58rzfgLyzQgh/CYX4nAAAAAElFTkSuQmCC" />
+    </div>
+    <div class="list-group list-group-flush">
+      <a *ngFor="let item of items" 
+         class="list-group-item list-group-item-action "
+         [routerLink]="item.url">{{item.nombre}}</a>
+    </div>
+  </div>
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light  border-bottom d-button">
+      <button class="btn btn-primary" id="menu-toggle" (click)="desplegarMenu()">Desplegar Menú</button>
+    </nav>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

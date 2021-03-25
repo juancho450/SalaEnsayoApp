@@ -1,0 +1,30 @@
+.banner{
+    height: 100vh;
+    background-image: linear-gradient(to top, rgba(39, 37, 46, 0.4) 0%, rgba(251, 193, 193, 0.384) 100%), url("/assets/images/unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.head{
+    text-align: center;
+    font-size: 25px;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.titulo{
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.copy{
+    font-weight: 300;
+    font-size: 25px;
+}
