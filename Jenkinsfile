@@ -12,22 +12,24 @@ pipeline {
             disableConcurrentBuilds()
         }
 
-        stages {
-            stage('compilar') {
-                steps {
-                    sh 'npm i'
-                    sh 'ng build'
+         stages {
+            stage('Install') {
+                steps { sh 'npm install' }
+            }
+
+            stage('Test') {
+            parallel {
+                stage('Static code analysis') {
+                    steps { sh 'npm run-script lint' }
+                }
+                stage('Unit tests') {
+                    steps { sh 'npm run-script test' }
                 }
             }
-            stage('test') {
-                steps {
-                    sh 'ng test'
-                }
             }
-            stage('lint') {
-                steps {
-                    sh 'ng lint'
-                }
+
+            stage('Build') {
+            steps { sh 'npm run-script build' }
             }
         }
         post {
@@ -38,3 +40,4 @@ pipeline {
             }
         }
 }
+
