@@ -14,7 +14,7 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false 
     },
     remapIstanbulReporter: {
       dir : 'reports/test-results/coverage',
@@ -31,8 +31,6 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml','junit'],
     htmlReporter: {
       outputFile: 'reports/unit/units.html',
-
-      // Optional 
       pageTitle: 'Vida - Tests Unitarios',
       subPageTitle: 'Presentacion HTML de los test unitarios',
       dir: 'reports/html/'

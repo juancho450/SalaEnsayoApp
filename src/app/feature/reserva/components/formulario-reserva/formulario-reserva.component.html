@@ -1,65 +1,71 @@
 <div class="container">
-    <div class="py-3">
-        <p class="fz-20 m-0 font-weight-bold">
-            Nueva reserva
-        </p>
-    </div>
+  <div class="py-3">
+    <p class="fz-20 m-0 font-weight-bold">
+      Reserva
+    </p>
+  </div>
 
-    <div>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="nombre">Nombre persona o banda</label>
-                  <input type="text" class="form-control" id="nombre" placeholder="Nombre persona o banda">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="nombre">Fecha</label>
-                  <input type="text" class="form-control" id="nombre" placeholder="Nombre persona o banda">
-                </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-              </div>
-            </div>
-         
-            <div class="form-group">
-              <label for="inputAddress2">Address 2</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </form>
-    </div>
+  <div>
+    <form [formGroup]="formularioReserva" (ngSubmit)="guardar()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="nombre">Nombre persona o banda</label>
+          <input validar type="text" class="form-control" id="nombre" formControlName="nombre"
+            placeholder="Nombre persona o banda">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="fecha">Fecha</label>
+          <div class="form-group">
+            <input formControlName="fecha" validar placeholder="Fecha" class="form-control" #d1="ngbDatepicker" ngbDatepicker
+              (click)="abrirDatePicker(d1)" readonly [minDate]="fechaMinima" [maxDate]="fechaMaxima">
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="horaInicial">Hora inicial</label>
+          <ng-select validar [items]="horaInicial" [searchable]="false" [clearable]="false" bindLabel="hora" bindValue="hora" formControlName="hora_inicial" (change)="cambiarHoraFinal($event.hora); calcularTarifa($event?.hora, formularioReserva.controls.hora_final.value) ">
+          </ng-select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="horaFinal">Hora final</label>
+          <ng-select validar [items]="horaFinal" [searchable]="false" [clearable]="false" bindLabel="hora" bindValue="hora" formControlName="hora_final" [readonly]="formularioReserva.controls.hora_inicial.value == null" (change)="calcularTarifa(formularioReserva.controls.hora_inicial.value, $event?.hora)">
+          </ng-select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3 align-self-center">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck" formControlName="alquila_instrumento"
+              (change)="cambiarCheckbox($event.target.checked)">
+            <label class="form-check-label" for="gridCheck">
+              ¿Alquiler instrumentos?
+            </label>
+          </div>
+        </div>
+        <ng-container *ngIf="mostrarInstrumentos">
+          <div class="form-group col-md-2">
+            <label for="cantidad">Cantidad instrumentos</label>
+            <ng-select validar [items]="cantidades" [searchable]="false" [clearable]="false" formControlName="cantidad" bindLabel="cantidad" bindValue="cantidad" (change)="calcularTarifaExtra($event?.cantidad)">
+            </ng-select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="instrumento">Instrumento</label>
+            <ng-select validar [items]="instrumentos" [multiple]="true" [maxSelectedItems]="formularioReserva.controls.cantidad.value" [searchable]="false" formControlName="instrumento"  bindLabel="instrumento" bindValue="instrumento">
+            </ng-select>
+          </div>
+        </ng-container>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="tarifa">Tarifa ($)</label>
+          <input type="text" class="form-control" id="tarifa" placeholder="" formControlName="tarifa" readonly>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-danger mr-2" [routerLink]="['/reserva']">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!formularioReserva.valid">Guardar</button>
+      </div>
+    </form>
+  </div>
 </div>

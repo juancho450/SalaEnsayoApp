@@ -14,10 +14,10 @@ export class TrmComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-   this.getTRM();
+   this.obtenerTRM();
   }
 
-  public getTRM() {
+  public obtenerTRM() {
     const trmapi = new TrmApi(TOKEN_TRM);
     trmapi
     .latest()

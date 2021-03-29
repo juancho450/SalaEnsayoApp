@@ -62,6 +62,12 @@ export class HttpService {
     return this.http.delete<R>(serviceUrl, ropts);
   }
 
+  public doPatch<T, R>(serviceUrl: string, body: T, opts?: Options): Observable<R> {
+    const ropts = this.createOptions(opts);
+
+    return this.http.patch<R>(serviceUrl, body, ropts);
+  }
+
   public doGetParameters<T>(serviceUrl: string, parametros: HttpParams, opts?: Options): Observable<T> {
     const ropts = this.createOptions(opts);
     const options = parametros !== null ? {

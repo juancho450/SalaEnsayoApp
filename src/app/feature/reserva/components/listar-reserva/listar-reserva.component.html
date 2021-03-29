@@ -5,32 +5,30 @@
             <th scope="col">Nombre</th>
             <th scope="col">Fecha</th>
             <th scope="col">Hora</th>
-            <th scope="col">Instrumentos</th>
+            <th scope="col">Alquila</th>
             <th scope="col">Total</th>
+            <th scope="col" class="text-center">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          <ng-container *ngIf="reservas?.length == 0;else Reservas">
+            <tr>
+              <td colspan="6" class="text-center">No hay reservas para mostrar</td>
+            </tr>
+          </ng-container>
+          <ng-template #Reservas>
+            <tr *ngFor="let reserva of reservas">
+              <td>{{reserva.nombre}}</td>
+              <td>{{reserva.fecha | date}}</td>
+              <td>{{reserva.horaInicial}} - {{reserva.horaFinal}}</td>
+              <td>{{reserva.alquilaInstrumentos ? 'Si' : 'No'}}</td>
+              <td>{{reserva.totalTarifa + reserva.totalTarifaExtra | currency}}</td>
+              <td class="text-center">
+                <i class="fa fa-trash text-danger mr-3" role="button" (click)="eliminarReserva(reserva)"></i>
+                <i class="fa fa-pencil text-primary" role="button" (click)="editarReserva(reserva)"></i>
+              </td>
+            </tr>
+          </ng-template>
         </tbody>
       </table>
   </div>

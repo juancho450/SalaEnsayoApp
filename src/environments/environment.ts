@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  endpoint: '/prospectos-vida'
+  endpoint: '/prospectos-vida',
+  endpoint_json_server: 'http://localhost:3000',
 };
 
 /*
