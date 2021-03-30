@@ -40,7 +40,7 @@ export class ListarReservaComponent implements OnInit {
   }
 
   editarReserva(reserva: Reserva) {
-    this.router.navigateByUrl(`/reserva/edit/${reserva.id}`);
+    this.router.navigate([`/reserva/edit/${reserva.id}`]);
   }
 
 }

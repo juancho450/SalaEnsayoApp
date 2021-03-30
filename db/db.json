@@ -129,6 +129,18 @@
       "cantidad": null,
       "totalTarifa": 37500,
       "totalTarifaExtra": 0
+    },
+    {
+      "nombre": "Banda 4",
+      "fecha": "2021-03-31T05:00:00.000Z",
+      "horaInicial": 12,
+      "horaFinal": 19,
+      "alquilaInstrumentos": false,
+      "instrumentos": null,
+      "cantidad": null,
+      "totalTarifa": 87500,
+      "totalTarifaExtra": 0,
+      "id": 4
     }
   ]
 }

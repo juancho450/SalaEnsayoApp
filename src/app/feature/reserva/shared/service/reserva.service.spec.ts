@@ -84,7 +84,7 @@ describe('ReservaService', () => {
   });
 
 
-  it('Deberia actualizar una reserva', () => {
+  it('Deberia guardar una reserva', () => {
     const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0);
 
     service.guardar(dummyReserva).subscribe((respuesta) => {

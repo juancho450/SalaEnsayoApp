@@ -228,7 +228,7 @@ export class FormularioReservaComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
-        this.router.navigateByUrl('/reserva');
+        this.router.navigate(['/reserva']);
       }
     }, () => {
       swal.fire({
