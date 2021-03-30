@@ -34,7 +34,7 @@ export class FormularioReservaComponent implements OnInit {
   public totalTarifaExtra: number;
   public id: string;
 
-  constructor(protected reservaService: ReservaService, private router: Router,  public activatedRoute: ActivatedRoute) {
+  constructor(public reservaService: ReservaService, private router: Router,  public activatedRoute: ActivatedRoute) {
     this.totalTarifa = 0;
     this.totalTarifaExtra = 0;
     this.mostrarInstrumentos = false;
@@ -68,7 +68,7 @@ export class FormularioReservaComponent implements OnInit {
     });
   }
 
-  private cargarDatos() {
+  public cargarDatos() {
     this.reservaService.consultarReserva(this.id).subscribe(res => {
 
       const fecha = {
@@ -94,19 +94,19 @@ export class FormularioReservaComponent implements OnInit {
     });
   }
 
-  private obtenerHoras() {
+  public obtenerHoras() {
     this.reservaService.consultarHoras().subscribe(res => {
       this.horaInicial = res;
     });
   }
 
-  private obtenerCantidades() {
+  public obtenerCantidades() {
     this.reservaService.consultarCantidades().subscribe(res => {
       this.cantidades = res;
     });
   }
 
-  private obtenerInstrumentos() {
+  public obtenerInstrumentos() {
     this.reservaService.consultarInstrumentos().subscribe(res => {
       this.instrumentos = res;
     });

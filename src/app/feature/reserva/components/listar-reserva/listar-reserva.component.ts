@@ -12,15 +12,15 @@ import swal from 'sweetalert2';
 export class ListarReservaComponent implements OnInit {
   reservas: Reserva[];
 
-  constructor(private reservaService: ReservaService , private router: Router) { }
+  constructor(public reservaService: ReservaService , private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerReservas();
   }
 
   obtenerReservas() {
-    this.reservaService.consultarReservas().subscribe(res => {
-      this.reservas = res;
+    this.reservaService.consultarReservas().subscribe(reservas => {
+      this.reservas = reservas;
     });
   }
 
