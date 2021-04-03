@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HTTP_ERRORES_CODIGO } from './http-codigo-error';
+import swal from 'sweetalert2';
 
 @Injectable()
 export class ManejadorError implements ErrorHandler {
@@ -10,6 +11,7 @@ export class ManejadorError implements ErrorHandler {
   handleError(error: string | Error): void {
     const mensajeError = this.mensajePorDefecto(error);
     this.imprimirErrorConsola(mensajeError);
+    this.mostrarErrorAlerta(mensajeError);
   }
 
   private mensajePorDefecto(error) {
@@ -35,8 +37,19 @@ export class ManejadorError implements ErrorHandler {
     }
   }
 
+  private mostrarErrorAlerta(mensaje): void {
+    swal.fire({
+      position: 'bottom-end',
+      icon: 'error',
+      title: mensaje,
+      showConfirmButton: false,
+      timer: 4000,
+      toast: true
+    });
+  }
+
   public obtenerErrorHttpCode(httpCode: number): string {
-    if (HTTP_ERRORES_CODIGO.hasOwnProperty(httpCode)) {
+    if (!HTTP_ERRORES_CODIGO.hasOwnProperty(httpCode)) {
       return HTTP_ERRORES_CODIGO.PETICION_FALLIDA;
     }
     return HTTP_ERRORES_CODIGO[httpCode];

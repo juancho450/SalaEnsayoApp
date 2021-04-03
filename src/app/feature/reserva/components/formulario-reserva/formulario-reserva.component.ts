@@ -14,6 +14,7 @@ const TARIFA_DESCUENTO = 12500;
 const TARFIFA_EXTRA_INSTRUMENTO = 5000;
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 50;
+const LIMITE_MES = 3;
 
 @Component({
   selector: 'app-formulario-reserva',
@@ -24,7 +25,7 @@ export class FormularioReservaComponent implements OnInit {
   formularioReserva: FormGroup;
   private fecha = new Date();
   public fechaMinima = { year: this.fecha.getFullYear(), month: this.fecha.getMonth() + 1, day: this.fecha.getDate() + 1};
-  public fechaMaxima = { year: this.fecha.getFullYear(), month: this.fecha.getMonth() + 3, day: this.fecha.getDate() };
+  public fechaMaxima = { year: this.fecha.getFullYear(), month: this.fecha.getMonth() + LIMITE_MES, day: this.fecha.getDate() };
   public mostrarInstrumentos: boolean;
   public horaInicial: Hora[];
   public horaFinal: Hora[];
@@ -39,7 +40,9 @@ export class FormularioReservaComponent implements OnInit {
     this.totalTarifaExtra = 0;
     this.mostrarInstrumentos = false;
     this.activatedRoute.params.subscribe((params) => {
-      if (params.id) { this.id = params.id; }
+      if (params.id) {
+        this.id = params.id;
+      }
     });
    }
 
@@ -150,7 +153,8 @@ export class FormularioReservaComponent implements OnInit {
   calcularTarifa(horaInicial: number , horaFinal: number) {
     if (horaInicial !== null && horaFinal !== null) {
       const totalHoras = horaFinal - horaInicial;
-      if (totalHoras > 2) {
+      const maximoTarifaNormal = 2;
+      if (totalHoras > maximoTarifaNormal) {
         this.totalTarifa = (horaFinal - horaInicial) * TARIFA_DESCUENTO;
       } else {
         this.totalTarifa = (horaFinal - horaInicial) * TARIFA;
