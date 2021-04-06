@@ -3,7 +3,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from '@core/services/http.service';
-import { Columna } from '@shared/model/columna';
 import { SharedModule } from '@shared/shared.module';
 import { ReservaService } from '../../shared/service/reserva.service';
 
