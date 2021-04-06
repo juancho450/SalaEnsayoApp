@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'Sala de Ensayo CEIBA';
   public navLinks: MenuItem[] = [
     { url: '/home', nombre: 'Home' },
-    { url: '/reserva', nombre: 'Reservas' }
+    { url: '/reserva', nombre: 'Reservas' },
+    { url: '/instrumento', nombre: 'Instrumentos' },
   ];
 }

@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [SecurityGuard]  },
   { path: 'producto', loadChildren: () => import('@producto/producto.module').then(mod => mod.ProductoModule) },
   { path: 'reserva', loadChildren: () => import('./feature/reserva/reserva.module').then(m => m.ReservaModule) },
+  { path: 'instrumento', loadChildren: () => import('./feature/instrumento/instrumento.module').then(m => m.InstrumentoModule) },
 ];
 
 @NgModule({

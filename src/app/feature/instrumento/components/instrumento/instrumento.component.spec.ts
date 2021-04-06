@@ -3,26 +3,25 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from '@core/services/http.service';
-import { Columna } from '@shared/model/columna';
 import { SharedModule } from '@shared/shared.module';
-import { ReservaService } from '../../shared/service/reserva.service';
+import { InstrumentoService } from '../../shared/service/instrumento.service';
 
-import { ReservaComponent } from './reserva.component';
+import { InstrumentoComponent } from './instrumento.component';
 
-describe('ReservaComponent', () => {
-  let component: ReservaComponent;
-  let fixture: ComponentFixture<ReservaComponent>;
+describe('InstrumentoComponent', () => {
+  let component: InstrumentoComponent;
+  let fixture: ComponentFixture<InstrumentoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReservaComponent],
+      declarations: [ InstrumentoComponent ],
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
         SharedModule
       ],
       providers: [
-        ReservaService,
+        InstrumentoService,
         HttpService,
         DatePipe
       ]
@@ -31,7 +30,7 @@ describe('ReservaComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReservaComponent);
+    fixture = TestBed.createComponent(InstrumentoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

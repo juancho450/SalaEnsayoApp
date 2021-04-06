@@ -1,7 +1,7 @@
 <div class="bg-banner p-3">
     <div class="container d-flex justify-content-between">
         <div class="align-self-center">
-            <p class="m-0 fz-20 font-weight-bold">Reservas</p>
+            <p class="m-0 fz-20 font-weight-bold">Instrumentos</p>
         </div>
         <div>
             <button class="btn btn-primary fz-20" [routerLink]="['./create']">Nueva reserva</button>
@@ -10,10 +10,8 @@
 </div>
 
 <div class="mt-4 container">
-    <div class="d-flex justify-content-between flex-wrap">
-        <p>Tarifa general : 15.000</p>
-        <p>Tarifa descuento mas de 2 horas : 12.500</p>
+    <div>
         <p>Tarifa prestamo instrumento : 5.000</p>
     </div>
-    <app-listado [componente]="componente" [columnas]="columnasReservas" [urlEditar]="urlEditar"></app-listado>
+    <app-listado [componente]="componente" [columnas]="columnasInstrumentos" [urlEditar]="urlEditar"></app-listado>
 </div>

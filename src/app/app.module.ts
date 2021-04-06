@@ -9,6 +9,7 @@ import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
 import { TrmComponent } from './feature/trm/components/trm.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReservaModule } from './feature/reserva/reserva.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     ProductoModule,
     CoreModule,
-    NgbModule
+    NgbModule,
+    ReservaModule
   ],
   providers: [CookieService],
     bootstrap: [AppComponent],

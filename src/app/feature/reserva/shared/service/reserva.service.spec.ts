@@ -11,9 +11,6 @@ describe('ReservaService', () => {
   let httpMock: HttpTestingController;
   let service: ReservaService;
   const apiEndpointReservas = `${environment.endpoint_json_server}/reservas`;
-//   const apiEndpointHoras = `${environment.endpoint_json_server}/horas`;
-//   const apiEndpointCantidades = `${environment.endpoint_json_server}/cantidades`;
-//   const apiEndpointInstrumentos = `${environment.endpoint_json_server}/instrumentos`;
 
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
@@ -25,29 +22,13 @@ describe('ReservaService', () => {
   });
 
   it('should be created', () => {
-    const productService: ReservaService = TestBed.inject(ReservaService);
-    expect(productService).toBeTruthy();
-  });
-
-  it('Deberia consultar reservas', () => {
-    const dummyReservas = [
-      new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, '1'),
-      new Reserva('Banda 2', '2021-03-30T05:00:00.000Z', 10, 11, true, ['Guitarra acustica', 'Ukelele'], 2, 15000, 10000, '2'),
-    ];
-
-    service.consultarReservas().subscribe(reservas => {
-      expect(reservas.length).toBe(2);
-      expect(reservas).toEqual(dummyReservas);
-    });
-
-    const req = httpMock.expectOne(apiEndpointReservas);
-    expect(req.request.method).toBe('GET');
-    req.flush(dummyReservas);
+    const reservaService: ReservaService = TestBed.inject(ReservaService);
+    expect(reservaService).toBeTruthy();
   });
 
   it('Deberia consultar reservas por id', () => {
     const dummyIdReserva = '1';
-    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, '1');
+    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, 15000, 'Sala 1', 1);
 
     service.consultarReserva(dummyIdReserva).subscribe(reservas => {
       expect(reservas).toBeTruthy();
@@ -60,7 +41,7 @@ describe('ReservaService', () => {
   });
 
   it('Deberia consultar reservas por filtros', () => {
-    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, '1');
+    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, 15000, 'Sala 1', 1);
 
     service.consultarReservaPorFiltros(dummyReserva).subscribe(reservas => {
       expect(reservas.length).toBe(1);
@@ -73,7 +54,7 @@ describe('ReservaService', () => {
   });
 
   it('Deberia actualizar una reserva', () => {
-    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, '1');
+    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, 15000, 'Sala 1', 1);
 
     service.guardar(dummyReserva).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
@@ -85,23 +66,13 @@ describe('ReservaService', () => {
 
 
   it('Deberia guardar una reserva', () => {
-    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0);
+    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, 15000, 'Sala 1', null);
 
     service.guardar(dummyReserva).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
     const req = httpMock.expectOne(apiEndpointReservas);
     expect(req.request.method).toBe('POST');
-    req.event(new HttpResponse<boolean>({body: true}));
-  });
-
-  it('Deberia eliminar una reserva', () => {
-    const dummyReserva = new Reserva('Banda 1', '2021-03-30T05:00:00.000Z', 8, 9, false, null, null, 15000, 0, '1');
-    service.eliminar(dummyReserva).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
-    });
-    const req = httpMock.expectOne(`${apiEndpointReservas}/1`);
-    expect(req.request.method).toBe('DELETE');
     req.event(new HttpResponse<boolean>({body: true}));
   });
 });

@@ -93,54 +93,47 @@
       "instrumento": "Ukelele"
     }
   ],
+  "salas": [
+    {
+      "id": 1,
+      "sala": "Sala 1"
+    },
+    {
+      "id": 2,
+      "sala": "Sala 2"
+    }
+  ],
   "reservas": [
     {
       "id": 1,
       "nombre": "Banda 1",
-      "fecha": "2021-03-30T05:00:00.000Z",
+      "fecha": "2021-04-07T05:00:00.000Z",
       "horaInicial": 8,
-      "horaFinal": 9,
-      "alquilaInstrumentos": false,
-      "instrumentos": null,
-      "cantidad": null,
-      "totalTarifa": 15000,
-      "totalTarifaExtra": 0
+      "horaFinal": 10,
+      "alquilaInstrumentos": true,
+      "instrumentos": [
+        "Bajo"
+      ],
+      "cantidad": 1,
+      "totalTarifa": 30000,
+      "totalTarifaExtra": 5000,
+      "total": 35000,
+      "sala": "Sala 1"
     },
     {
       "id": 2,
-      "nombre": "Banda 2",
-      "fecha": "2021-03-30T05:00:00.000Z",
-      "horaInicial": 9,
+      "nombre": "Banda 1",
+      "fecha": "2021-04-07T05:00:00.000Z",
+      "horaInicial": 8,
       "horaFinal": 10,
       "alquilaInstrumentos": false,
       "instrumentos": null,
       "cantidad": null,
-      "totalTarifa": 15000,
-      "totalTarifaExtra": 0
-    },
-    {
-      "id": 3,
-      "nombre": "Banda 3",
-      "fecha": "2021-03-30T05:00:00.000Z",
-      "horaInicial": 8,
-      "horaFinal": 11,
-      "alquilaInstrumentos": false,
-      "instrumentos": null,
-      "cantidad": null,
-      "totalTarifa": 37500,
-      "totalTarifaExtra": 0
-    },
-    {
-      "nombre": "Banda 4",
-      "fecha": "2021-03-31T05:00:00.000Z",
-      "horaInicial": 12,
-      "horaFinal": 19,
-      "alquilaInstrumentos": false,
-      "instrumentos": null,
-      "cantidad": null,
-      "totalTarifa": 87500,
+      "totalTarifa": 30000,
       "totalTarifaExtra": 0,
-      "id": 4
+      "total": 30000,
+      "sala": "Sala 2"
     }
-  ]
+  ],
+  "instrumento": []
 }

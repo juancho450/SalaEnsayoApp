@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
-import { Cantidad } from '../../shared/model/cantidad';
-import { Hora } from '../../shared/model/hora';
-import { Instrumento } from '../../shared/model/instrumentos';
+import { Cantidad } from '@shared/model/cantidad';
+import { Hora } from '@shared/model/hora';
+import { Instrumento } from '@shared/model/instrumentos';
 import { Reserva } from '../../shared/model/reserva';
 import { ReservaService } from '../../shared/service/reserva.service';
 import swal from 'sweetalert2';
+import { Sala } from '../../shared/model/sala';
 
 const TARIFA = 15000;
 const TARIFA_DESCUENTO = 12500;
@@ -31,9 +32,11 @@ export class FormularioReservaComponent implements OnInit {
   public horaFinal: Hora[];
   public cantidades: Cantidad[];
   public instrumentos: Instrumento[];
+  public salas: Sala[];
   public totalTarifa: number;
   public totalTarifaExtra: number;
   public id: string;
+
 
   constructor(public reservaService: ReservaService, private router: Router,  public activatedRoute: ActivatedRoute) {
     this.totalTarifa = 0;
@@ -51,6 +54,7 @@ export class FormularioReservaComponent implements OnInit {
     this.obtenerHoras();
     this.obtenerCantidades();
     this.obtenerInstrumentos();
+    this.obtenerSalas();
 
     if (this.id) {
       this.cargarDatos();
@@ -67,7 +71,8 @@ export class FormularioReservaComponent implements OnInit {
       tarifa:  new FormControl(0),
       cantidad: new FormControl(null),
       instrumento: new FormControl(null),
-      alquila_instrumento: new FormControl(false)
+      alquila_instrumento: new FormControl(false),
+      sala: new FormControl(null, Validators.required),
     });
   }
 
@@ -81,16 +86,17 @@ export class FormularioReservaComponent implements OnInit {
       };
 
       this.formularioReserva.controls.nombre.setValue(res.nombre);
+      this.formularioReserva.controls.sala.setValue(res.sala);
       this.formularioReserva.controls.fecha.setValue(fecha);
       this.formularioReserva.controls.hora_inicial.setValue(res.horaInicial);
-      this.cambiarHoraFinal(res.horaInicial);
-      this.formularioReserva.controls.hora_final.setValue(res.horaFinal);
-      this.mostrarInstrumentos = res.alquilaInstrumentos;
-      this.cambiarCheckbox(this.mostrarInstrumentos);
       this.formularioReserva.controls.cantidad.setValue(res.cantidad);
       this.formularioReserva.controls.alquila_instrumento.setValue(res.alquilaInstrumentos);
+      this.mostrarInstrumentos = res.alquilaInstrumentos;
       this.totalTarifa = res.totalTarifa;
       this.totalTarifaExtra = res.totalTarifaExtra;
+      this.cambiarHoraFinal(res.horaInicial);
+      this.formularioReserva.controls.hora_final.setValue(res.horaFinal);
+      this.establecerValidacionesInstrumentos();
       this.calcularTarifa(res.horaInicial , res.horaFinal);
       this.calcularTarifaExtra(res.cantidad);
       this.formularioReserva.controls.instrumento.setValue(res.instrumentos);
@@ -112,6 +118,12 @@ export class FormularioReservaComponent implements OnInit {
   public obtenerInstrumentos() {
     this.reservaService.consultarInstrumentos().subscribe(res => {
       this.instrumentos = res;
+    });
+  }
+
+  public obtenerSalas() {
+    this.reservaService.consultarSalas().subscribe(res => {
+      this.salas = res;
     });
   }
 
@@ -191,16 +203,18 @@ export class FormularioReservaComponent implements OnInit {
   guardar() {
     const {year , month , day} = this.formularioReserva.controls.fecha.value;
     const reserva: Reserva = {
-        id: this.id,
+        id: typeof this.id !== 'undefined' ? Number(this.id) : null,
         nombre: this.formularioReserva.controls.nombre.value,
         fecha: new Date(year , month - 1 , day).toISOString(),
         horaInicial: this.formularioReserva.controls.hora_inicial.value,
         horaFinal: this.formularioReserva.controls.hora_final.value,
         alquilaInstrumentos: this.mostrarInstrumentos,
         instrumentos: this.formularioReserva.controls.instrumento.value,
-        cantidad: this.formularioReserva.controls.cantidad?.value,
+        cantidad: this.formularioReserva.controls.cantidad.value,
         totalTarifa: this.totalTarifa,
-        totalTarifaExtra: this.totalTarifaExtra
+        totalTarifaExtra: this.totalTarifaExtra,
+        total: this.totalTarifa + this.totalTarifaExtra,
+        sala: this.formularioReserva.controls.sala.value
     };
     this.validarReserva(reserva);
   }
@@ -234,14 +248,6 @@ export class FormularioReservaComponent implements OnInit {
         });
         this.router.navigate(['/reserva']);
       }
-    }, () => {
-      swal.fire({
-        position: 'bottom-end',
-        icon: 'warning',
-        title: 'Error',
-        showConfirmButton: false,
-        timer: 1500,
-      });
     });
   }
 }
