@@ -135,5 +135,19 @@
       "sala": "Sala 2"
     }
   ],
-  "instrumento": []
+  "instrumento": [
+    {
+      "id": 1,
+      "nombre": "Banda 1",
+      "instrumentos": [
+        "Ukelele",
+        "Bajo",
+        "Guitarra electrica",
+        "Guitarra acustica"
+      ],
+      "cantidad": 4,
+      "total": 20000,
+      "fecha": "2021-04-08T05:00:00.000Z"
+    }
+  ]
 }

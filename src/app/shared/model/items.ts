@@ -9,7 +9,7 @@ export class Items {
     cantidad?: number;
 
     constructor(nombre: string, fecha: string, total: number, id?: number,  horaInicial?: number, horaFinal?: number,
-                alquilaInstrumentos?: boolean, cantidad?: number) {
+                alquilaInstrumentos: boolean = false, cantidad?: number) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;

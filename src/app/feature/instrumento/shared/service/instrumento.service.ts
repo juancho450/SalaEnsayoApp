@@ -25,7 +25,7 @@ export class InstrumentoService {
   }
 
   public guardar(instrumento: Instrumentos) {
-    if (typeof instrumento.id !== 'undefined') {
+    if (instrumento.id !== null) {
       return this.http.doPatch<Instrumentos, boolean>(`${environment.endpoint_json_server}/instrumento/${instrumento.id}`, instrumento,
                                                                               this.http.optsName('Actualizar instrumento'));
     } else {

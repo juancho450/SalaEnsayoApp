@@ -5,7 +5,7 @@ export class Reserva {
     horaInicial: number;
     horaFinal: number;
     alquilaInstrumentos: boolean;
-    instrumentos: any;
+    instrumentos: string[];
     cantidad: number;
     totalTarifa: number;
     totalTarifaExtra: number;
@@ -14,7 +14,7 @@ export class Reserva {
 
 
     constructor(nombre: string, fecha: string, horaInicial: number, horaFinal: number, alquilaInstrumentos: boolean,
-                instrumentos: any[], cantidad: number, totalTarifa: number, totalTarifaExtra: number, total: number,
+                instrumentos: string[], cantidad: number, totalTarifa: number, totalTarifaExtra: number, total: number,
                 sala: string, id?: number) {
         this.id = id;
         this.nombre = nombre;

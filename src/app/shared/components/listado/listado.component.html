@@ -2,10 +2,10 @@
   <table class="table table-striped" aria-describedby="Listado">
     <thead class="thead-dark">
       <tr>
-        <th *ngFor="let column of columnas" [class]="column.headerClass" [style.width]="column.width">
+        <th scope="col" *ngFor="let column of columnas" [class]="column.headerClass" [style.width]="column.width">
           {{column.header}}
         </th>
-        <th class="text-center">
+        <th scope="col" class="text-center">
           Acciones
         </th>
       </tr>

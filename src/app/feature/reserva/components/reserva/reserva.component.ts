@@ -29,8 +29,7 @@ export class ReservaComponent implements OnInit {
         data: 'fecha',
         dataClass: 'text-left',
         render: (fecha: string) => {
-          const fechaReserva = this.datePipe.transform(fecha, 'dd/MM/yyyy');
-          return fechaReserva;
+          return this.datePipe.transform(fecha, 'dd/MM/yyyy');
         }
       },
       {
@@ -57,8 +56,7 @@ export class ReservaComponent implements OnInit {
         headerClass: 'text-left',
         dataClass: 'text-left',
         render: (alquila: boolean) => {
-          const alquilaInstrumentos = alquila ? 'Si' : 'No';
-          return alquilaInstrumentos;
+          return alquila ? 'Si' : 'No';
         }
       },
       {

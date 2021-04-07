@@ -53,8 +53,8 @@ export class FormularioInstrumentoComponent implements OnInit {
                                                           Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
       fecha: new FormControl(null, [Validators.required]),
       tarifa:  new FormControl(0),
-      cantidad: new FormControl(null, Validators.required),
-      instrumento: new FormControl(null, Validators.required),
+      cantidad: new FormControl(null, [Validators.required]),
+      instrumento: new FormControl(null, [Validators.required]),
     });
   }
 
@@ -69,10 +69,10 @@ export class FormularioInstrumentoComponent implements OnInit {
       this.formularioInstrumento.controls.fecha.setValue(fecha);
       this.formularioInstrumento.controls.cantidad.setValue(res.cantidad);
       this.totalTarifa = res.total;
+      this.calcularTarifa(res.cantidad);
       setTimeout(() => {
         this.formularioInstrumento.controls.instrumento.setValue(res.instrumentos);
       });
-      this.calcularTarifa(res.cantidad);
     });
   }
 
@@ -100,7 +100,7 @@ export class FormularioInstrumentoComponent implements OnInit {
   guardar() {
     const {year , month , day} = this.formularioInstrumento.controls.fecha.value;
     const instrumento: Instrumentos = {
-        id: Number(this.id),
+        id: typeof this.id !== 'undefined' ? Number(this.id) : null,
         nombre: this.formularioInstrumento.controls.nombre.value,
         instrumentos: this.formularioInstrumento.controls.instrumento.value,
         cantidad: this.formularioInstrumento.controls.cantidad?.value,

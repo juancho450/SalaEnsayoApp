@@ -19,8 +19,7 @@ const LIMITE_MES = 3;
 
 @Component({
   selector: 'app-formulario-reserva',
-  templateUrl: './formulario-reserva.component.html',
-  styleUrls: ['./formulario-reserva.component.scss']
+  templateUrl: './formulario-reserva.component.html'
 })
 export class FormularioReservaComponent implements OnInit {
   formularioReserva: FormGroup;

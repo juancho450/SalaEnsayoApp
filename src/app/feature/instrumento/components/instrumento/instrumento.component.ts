@@ -4,8 +4,7 @@ import { Columna } from '@shared/model/columna';
 
 @Component({
   selector: 'app-instrumento',
-  templateUrl: './instrumento.component.html',
-  styleUrls: ['./instrumento.component.scss']
+  templateUrl: './instrumento.component.html'
 })
 export class InstrumentoComponent implements OnInit {
   columnasInstrumentos: Columna[];
@@ -31,8 +30,7 @@ export class InstrumentoComponent implements OnInit {
         data: 'fecha',
         dataClass: 'text-left',
         render: (fecha: string) => {
-          const fechaReserva = this.datePipe.transform(fecha, 'dd/MM/yyyy');
-          return fechaReserva;
+          return this.datePipe.transform(fecha, 'dd/MM/yyyy');
         }
       },
       {
