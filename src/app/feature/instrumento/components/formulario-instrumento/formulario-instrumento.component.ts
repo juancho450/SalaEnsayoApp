@@ -103,7 +103,7 @@ export class FormularioInstrumentoComponent implements OnInit {
         id: typeof this.id !== 'undefined' ? Number(this.id) : null,
         nombre: this.formularioInstrumento.controls.nombre.value,
         instrumentos: this.formularioInstrumento.controls.instrumento.value,
-        cantidad: this.formularioInstrumento.controls.cantidad?.value,
+        cantidad: this.formularioInstrumento.controls.cantidad.value,
         total: this.totalTarifa,
         fecha: new Date(year , month - 1 , day).toISOString(),
     };

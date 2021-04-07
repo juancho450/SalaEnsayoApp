@@ -57,7 +57,7 @@ describe('InstrumentoService', () => {
 
 
   it('Deberia guardar un instrumento', () => {
-    const dummyInstrumento = new Instrumentos('Banda 1', ['Guitarra acustica', 'Ukelele'], 2, 10000, '2021-03-30T05:00:00.000Z');
+    const dummyInstrumento = new Instrumentos('Banda 1', ['Guitarra acustica', 'Ukelele'], 2, 10000, '2021-03-30T05:00:00.000Z', null);
 
     service.guardar(dummyInstrumento).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
