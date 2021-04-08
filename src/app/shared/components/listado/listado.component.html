@@ -11,30 +11,23 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngIf="items?.length == 0;else Listado">
-        <tr>
-          <td colspan="8" class="text-center">No hay datos para mostrar</td>
-        </tr>
-      </ng-container>
-      <ng-template #Listado>
-        <tr *ngFor="let item of items">
-          <td *ngFor="let column of columnas;" [class]="column.dataClass">
-            <ng-container *ngIf="column.render != null">
-              <div [outerHTML]="column.render(item[column.data])">
-              </div>
-            </ng-container>
+      <tr *ngFor="let item of items">
+        <td *ngFor="let column of columnas;" [class]="column.dataClass">
+          <ng-container *ngIf="column.render != null">
+            <div [outerHTML]="column.render(item[column.data])">
+            </div>
+          </ng-container>
 
-            <ng-container *ngIf="column.render == null">
-              {{item[column.data]}}
-            </ng-container>
+          <ng-container *ngIf="column.render == null">
+            {{item[column.data]}}
+          </ng-container>
 
-          </td>
-          <td class="text-center">
-            <i class="fa fa-trash text-danger mr-3" role="button" (click)="eliminar(item.id)" aria-hidden="true"></i>
-            <i class="fa fa-pencil text-primary" role="button" (click)="editar(item.id)" aria-hidden="true"></i>
-          </td>
-        </tr>
-      </ng-template>
+        </td>
+        <td class="text-center">
+          <i class="fa fa-trash text-danger mr-3 eliminar" role="button" (click)="eliminar(item.id)" aria-hidden="true"></i>
+          <i class="fa fa-pencil text-primary editar" role="button" (click)="editar(item.id)" aria-hidden="true"></i>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

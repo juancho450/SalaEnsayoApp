@@ -6,8 +6,7 @@ const TOKEN_TRM = 'dDOobEkmzd0m5YRI9Ed9ruZPB';
 
 @Component({
   selector: 'app-trm',
-  templateUrl: './trm.component.html',
-  styleUrls: ['./trm.component.scss']
+  templateUrl: './trm.component.html'
 })
 export class TrmComponent implements OnInit {
   public tasaRepresentativaMercado: TRM;

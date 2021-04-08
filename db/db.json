@@ -107,31 +107,31 @@
     {
       "id": 1,
       "nombre": "Banda 1",
-      "fecha": "2021-04-07T05:00:00.000Z",
-      "horaInicial": 8,
-      "horaFinal": 10,
+      "fecha": "2021-04-10T05:00:00.000Z",
+      "horaInicial": 12,
+      "horaFinal": 17,
       "alquilaInstrumentos": true,
       "instrumentos": [
         "Bajo"
       ],
       "cantidad": 1,
-      "totalTarifa": 30000,
+      "totalTarifa": 62500,
       "totalTarifaExtra": 5000,
-      "total": 35000,
+      "total": 67500,
       "sala": "Sala 1"
     },
     {
       "id": 2,
       "nombre": "Banda 1",
-      "fecha": "2021-04-07T05:00:00.000Z",
+      "fecha": "2021-04-12T05:00:00.000Z",
       "horaInicial": 8,
-      "horaFinal": 10,
+      "horaFinal": 9,
       "alquilaInstrumentos": false,
       "instrumentos": null,
       "cantidad": null,
-      "totalTarifa": 30000,
+      "totalTarifa": 15000,
       "totalTarifaExtra": 0,
-      "total": 30000,
+      "total": 15000,
       "sala": "Sala 2"
     }
   ],
@@ -148,6 +148,36 @@
       "cantidad": 4,
       "total": 20000,
       "fecha": "2021-04-08T05:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "nombre": "Banda 2",
+      "instrumentos": [
+        "Ukelele"
+      ],
+      "cantidad": 1,
+      "total": 5000,
+      "fecha": "2021-04-09T05:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "nombre": "Banda 1",
+      "instrumentos": [
+        "Guitarra acustica"
+      ],
+      "cantidad": 1,
+      "total": 5000,
+      "fecha": "2021-04-12T05:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "nombre": "Banda 1",
+      "instrumentos": [
+        "Guitarra acustica"
+      ],
+      "cantidad": 1,
+      "total": 5000,
+      "fecha": "2021-04-12T05:00:00.000Z"
     }
   ]
 }

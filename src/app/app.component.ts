@@ -10,7 +10,7 @@ import { MenuItem } from '@core/modelo/menu-item';
 export class AppComponent {
   title = 'Sala de Ensayo CEIBA';
   public navLinks: MenuItem[] = [
-    { url: '/home', nombre: 'Home' },
+    { url: '/', nombre: 'Home' },
     { url: '/reserva', nombre: 'Reservas' },
     { url: '/instrumento', nombre: 'Instrumentos' },
   ];
